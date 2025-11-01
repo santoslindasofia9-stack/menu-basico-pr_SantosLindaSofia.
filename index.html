@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Interactivo - Sanrio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div class="particles-bg" id="particles-js"></div> <!-- Fondo de partículas -->
+
+  <header>
+    <a href="https://www.sanrio.com/" target="_blank" class="logo">
+      <img src="mi logo.png" alt="logo Sanrio">
+      <h2 class="sanrio lss">Sanrio Fun!</h2>
+    </a>
+    <nav class="main-nav">
+        <a href="#" class="nav-link active"><span class="material-icons">home</span> Inicio</a>
+        <a href="#" class="nav-link"><span class="material-icons">shopping_bag</span> Productos</a>
+        <a href="#" class="nav-link"><span class="material-icons">people_alt</span> Comunidad</a>
+        <a href="#" class="nav-link"><span class="material-icons">mail</span> Contacto</a>
+    </nav>
+    <!-- Botón para alternar tema -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Alternar modo oscuro/claro">
+        <span class="material-icons light-icon">light_mode</span>
+        <span class="material-icons dark-icon">dark_mode</span>
+    </button>
+    <button class="menu-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <h1>¡Bienvenido al Mundo Mágico de Sanrio!</h1>
+      <p>Explora nuestros personajes, productos y la comunidad más adorable.</p>
+      <button class="cta-button">Descubre Más</button>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- Tu código JS actual de particles.js y menú móvil -->
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+
+    menuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+
+    // Inicializar particles.js (tu código existente)
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          },
+          "image": {
+            "src": "img/github.svg", // Asegúrate de que esta ruta sea correcta o cámbiala si no usas una imagen de partículas
+            "width": 100,
+            "height": 100
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 6,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+  <!-- Tu archivo main.js irá aquí, después de los scripts de particles.js -->
+  <script src="main.js"></script>
+</body>
+</html>

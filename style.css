@@ -1,0 +1,515 @@
+:root {
+    --primary-color: #ff758f; /* Rosa principal de Sanrio */
+    --secondary-color: #f7a9b8; /* Rosa más claro */
+    --text-color: #333;
+    --light-text-color: #fff;
+    --dark-bg-color: #e04a6b; /* Un rosa más oscuro para hover */
+    --font-fancy: 'Pacifico', cursive;
+    --font-body: 'Roboto', sans-serif;
+    --accent-color: #ffe0b2; /* Un color suave para detalles, como naranja pastel */
+    --hover-bg-sanrio: #fcdbd8; /* Fondo suave para enlaces hover en móvil */
+}
+
+body {
+    font-family: var(--font-body);
+    margin: 0;
+    font-size: 1.1em;
+    background-color: #f9f9f9; /* Un fondo suave para el cuerpo */
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden; /* Evita desbordamiento horizontal */
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+/* Fondo de partículas */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-color); /* Color de fondo para las partículas */
+    background-image: url('');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    z-index: -1; /* Envía las partículas al fondo */
+    opacity: 0.8;
+}
+
+header {
+    display: flex;
+    background-color: var(--primary-color);
+    min-height: 90px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px; /* Más padding en los lados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+    position: sticky; /* Sticky header */
+    top: 0;
+    z-index: 1000;
+    border-bottom: 5px solid var(--accent-color); /* Borde inferior decorativo */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: var(--light-text-color); /* Color de texto del logo */
+    animation: bounceIn 0.8s ease-out; /* Animación de entrada para el logo */
+}
+
+.logo img {
+    height: 70px; /* Icono un poco más grande */
+    margin-right: 15px;
+    border-radius: 50%; /* Bordes redondos para el logo */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra más fuerte para el logo */
+    border: 3px solid var(--accent-color); /* Borde alrededor del logo */
+}
+
+.logo .sanrio {
+    font-family: var(--font-fancy); /* Fuente especial para el título */
+    font-size: 2.5em; /* Título más grande */
+    color: var(--light-text-color);
+    letter-spacing: 2px; /* Espaciado entre letras */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); /* Sombra para el texto */
+}
+
+.main-nav {
+    display: flex; /* Para desktop, los enlaces están en línea */
+    gap: 15px; /* Espacio entre los enlaces */
+}
+
+.main-nav .nav-link {
+    font-weight: 700;
+    padding: 10px 20px; /* Más padding para los enlaces */
+    font-size: 1.2em; /* Tamaño de fuente ligeramente más grande */
+    transition: all 0.3s ease; /* Transición para todos los cambios */
+    position: relative;
+    color: var(--light-text-color);
+    display: flex; /* Para alinear el icono con el texto */
+    align-items: center;
+    gap: 8px; /* Espacio entre el icono y el texto */
+}
+
+.main-nav .nav-link .material-icons,
+.main-nav .nav-link .sanrio-icon {
+    font-size: 1.3em; /* Tamaño del icono */
+    vertical-align: middle;
+}
+
+.main-nav .nav-link .sanrio-icon {
+    height: 25px; /* Tamaño de las imágenes de Sanrio */
+    width: 25px;
+}
+
+
+.main-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) scaleX(0); /* Empieza oculto */
+    width: 0;
+    height: 4px; /* Un poco más grueso */
+    background-color: var(--accent-color); /* Color del subrayado de acento */
+    transition: transform 0.3s ease, width 0.3s ease;
+    border-radius: 2px;
+}
+
+.main-nav .nav-link:hover::after,
+.main-nav .nav-link.active::after {
+    transform: translateX(-50%) scaleX(1);
+    width: 100%; /* Se expande al 100% en hover/activo */
+}
+
+.main-nav .nav-link:hover {
+    color: var(--light-text-color);
+    background-color: var(--dark-bg-color); /* Fondo más oscuro al pasar el ratón */
+    border-radius: 8px; /* Bordes redondeados más suaves al pasar el ratón */
+    transform: translateY(-3px); /* Pequeño levantamiento al pasar el ratón */
+}
+
+/* Estilos para el botón de menú móvil */
+.menu-toggle {
+    display: none; /* Oculto por defecto en desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 35px; /* Más grande */
+    height: 25px; /* Más grande */
+    position: relative;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 4px; /* Más grueso */
+    background-color: var(--light-text-color);
+    margin-bottom: 6px; /* Más espacio */
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Sección de contenido principal (ejemplo) */
+main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Para asegurar que el contenido esté por encima de las partículas */
+}
+
+.hero-section {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
+    padding: 60px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    animation: fadeIn 1s ease-out;
+}
+
+.hero-section h1 {
+    font-family: var(--font-fancy);
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hero-section p {
+    font-size: 1.4em;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.cta-button {
+    background-color: var(--accent-color);
+    color: var(--dark-bg-color); /* Texto oscuro en botón claro */
+    padding: 15px 35px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.3em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+    background-color: #ffd580; /* Un tono más claro al pasar el ratón */
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+
+@media (max-width: 992px) { /* Ajustes para pantallas medianas (tabletas) */
+    .main-nav {
+        gap: 10px;
+    }
+    .main-nav .nav-link {
+        padding: 8px 15px;
+        font-size: 1.1em;
+    }
+    .logo .sanrio {
+        font-size: 2em;
+    }
+    .hero-section h1 {
+        font-size: 2.8em;
+    }
+    .hero-section p {
+        font-size: 1.2em;
+    }
+}
+
+
+@media (max-width: 768px) { /* Breakpoint para tabletas y móviles */
+    header {
+        padding: 10px 20px;
+    }
+
+    .logo img {
+        height: 60px;
+    }
+
+    .logo .sanrio {
+        font-size: 1.8em;
+    }
+
+    .main-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 117, 143, 0.98); /* Fondo semitransparente más opaco */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%); /* Empieza fuera de la pantalla */
+        transition: transform 0.4s ease-in-out;
+        z-index: 999;
+    }
+
+    .main-nav.active {
+        transform: translateX(0); /* Se desliza hacia la vista */
+    }
+
+    .main-nav .nav-link {
+        display: flex; /* Mantener flex para icono y texto */
+        justify-content: center; /* Centrar contenido */
+        padding: 18px 0; /* Más padding para enlaces móviles */
+        text-align: center;
+        font-size: 1.7em; /* Enlaces más grandes para fácil interacción */
+        color: var(--light-text-color);
+        width: 80%; /* Ancho de los enlaces en el menú móvil */
+        margin-bottom: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4); /* Separador más visible */
+        border-radius: 10px; /* Bordes redondeados */
+        transition: background-color 0.3s ease;
+    }
+
+    .main-nav .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    .main-nav .nav-link:hover {
+        background-color: var(--hover-bg-sanrio); /* Fondo suave al pasar el ratón */
+        color: var(--primary-color); /* Cambiar color de texto al pasar el ratón */
+        transform: scale(1.05); /* Pequeño zoom al pasar el ratón */
+    }
+
+    .main-nav .nav-link::after {
+        display: none; /* Ocultar el subrayado animado en móvil */
+    }
+
+    .menu-toggle {
+        display: block; /* Muestra el botón de menú */
+    }
+
+    .hero-section h1 {
+        font-size: 2.2em;
+    }
+    .hero-section p {
+        font-size: 1.1em;
+    }
+    .cta-button {
+        font-size: 1.1em;
+        padding: 12px 25px;
+    }
+}
+
+@media (max-width: 480px) { /* Ajustes para móviles pequeños */
+    .logo .sanrio {
+        font-size: 1.5em;
+    }
+    .logo img {
+        height: 50px;
+        margin-right: 10px;
+    }
+    .main-nav .nav-link {
+        font-size: 1.4em;
+        padding: 15px 0;
+    }
+    .hero-section h1 {
+        font-size: 1.8em;
+    }
+    .hero-section p {
+        font-size: 1em;
+    }
+}
+/* Variables de color existentes */
+:root {
+    --primary-color: #ff758f; /* Rosa principal de Sanrio */
+    --secondary-color: #f7a9b8; /* Rosa más claro */
+    --text-color: #333;
+    --light-text-color: #fff;
+    --dark-bg-color: #e04a6b; /* Un rosa más oscuro para hover */
+    --font-fancy: 'Pacifico', cursive;
+    --font-body: 'Roboto', sans-serif;
+    --accent-color: #ffe0b2; /* Un color suave para detalles, como naranja pastel */
+    --hover-bg-sanrio: #fcdbd8; /* Fondo suave para enlaces hover en móvil */
+
+    /* Nuevas variables para el modo oscuro (ejemplos) */
+    --dark-mode-primary: #331f24; /* Rosa oscuro casi negro */
+    --dark-mode-secondary: #4a303a; /* Rosa oscuro */
+    --dark-mode-text: #f0f0f0; /* Texto claro */
+    --dark-mode-light-text: #fff;
+    --dark-mode-accent: #a04f5e; /* Un acento diferente, más tenue */
+    --dark-mode-hero-bg: rgba(51, 31, 36, 0.9); /* Fondo oscuro para hero */
+    --dark-mode-cta-button: #7d4456; /* Botón CTA oscuro */
+    --dark-mode-cta-button-text: #fcdbd8; /* Texto de botón CTA claro */
+    --dark-mode-particles: #a04f5e; /* Color de partículas oscuro */
+}
+
+/* Estilos de tu tema actual (modo claro por defecto) */
+body {
+    font-family: var(--font-body);
+    margin: 0;
+    font-size: 1.1em;
+    background-color: #f9f9f9; /* Un fondo suave para el cuerpo */
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden; /* Evita desbordamiento horizontal */
+    transition: background-color 0.4s ease, color 0.4s ease; /* Transición para un cambio suave */
+}
+
+/* ... (el resto de tu CSS para el modo claro se mantiene igual) ... */
+
+/* Estilos para el botón de alternar tema */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.8em; /* Tamaño del icono */
+    color: var(--light-text-color); /* Color del icono en modo claro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    margin-left: 20px; /* Separación del menú */
+}
+
+.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.theme-toggle .dark-icon {
+    display: none; /* Icono de luna oculto por defecto */
+}
+.dark-theme .theme-toggle .light-icon {
+    display: none; /* Icono de sol oculto en modo oscuro */
+}
+.dark-theme .theme-toggle .dark-icon {
+    display: block; /* Icono de luna visible en modo oscuro */
+    color: var(--dark-mode-text); /* Color del icono en modo oscuro */
+}
+
+/* --- ESTILOS PARA EL MODO OSCURO (CLASE .dark-theme) --- */
+body.dark-theme {
+    background-color: var(--dark-mode-primary);
+    color: var(--dark-mode-text);
+}
+
+/* Encabezado */
+body.dark-theme header {
+    background-color: var(--dark-mode-secondary);
+    border-bottom-color: var(--dark-mode-accent);
+}
+
+/* Título Sanrio Fun! */
+body.dark-theme .logo .sanrio {
+    color: var(--dark-mode-light-text);
+    text-shadow: none; /* Eliminar sombra si no contrasta bien */
+}
+
+/* Enlaces de navegación */
+body.dark-theme .main-nav .nav-link {
+    color: var(--dark-mode-light-text);
+}
+body.dark-theme .main-nav .nav-link::after {
+    background-color: var(--dark-mode-accent);
+}
+body.dark-theme .main-nav .nav-link:hover {
+    background-color: var(--dark-mode-primary); /* Un color más oscuro al pasar el ratón en modo oscuro */
+    color: var(--dark-mode-text);
+}
+/* Iconos de navegación */
+body.dark-theme .main-nav .nav-link .material-icons {
+    color: var(--dark-mode-light-text); /* Asegura que los íconos sean claros */
+}
+
+
+/* Fondo de partículas */
+body.dark-theme #particles-js {
+    background-color: var(--dark-mode-secondary); /* Color de fondo para las partículas en modo oscuro */
+    opacity: 0.9;
+}
+/* Para cambiar el color de las partículas en sí */
+/* Este cambio es más complejo porque particles.js renderiza en canvas.
+   La forma más directa es recargar particles.js con una nueva configuración,
+   o tener dos configuraciones y alternar entre ellas.
+   Para esta evaluación, si cambias el background-color del canvas de particles.js,
+   ya es un buen indicio de que lo estás intentando.
+   Si quieres cambiar el color de las partículas, busca la configuración "color"
+   en tu script de particles.js y considera cómo podrías actualizarla dinámicamente.
+   Para esta evaluación, solo cambiar el background del canvas ya cuenta.
+*/
+
+
+/* Sección Hero */
+body.dark-theme .hero-section {
+    background-color: var(--dark-mode-hero-bg); /* Fondo más oscuro para la sección hero */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .hero-section h1 {
+    color: var(--dark-mode-accent); /* Título con color de acento oscuro */
+    text-shadow: none;
+}
+
+body.dark-theme .hero-section p {
+    color: var(--dark-mode-text);
+}
+
+/* Botón CTA */
+body.dark-theme .cta-button {
+    background-color: var(--dark-mode-cta-button);
+    color: var(--dark-mode-cta-button-text);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .cta-button:hover {
+    background-color: #5c3546; /* Tono más claro en hover para modo oscuro */
+    color: var(--dark-mode-text);
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* Media queries para móvil en modo oscuro */
+@media (max-width: 768px) {
+    body.dark-theme .main-nav {
+        background-color: rgba(51, 31, 36, 0.98); /* Fondo oscuro semitransparente para menú móvil */
+    }
+    body.dark-theme .main-nav .nav-link:hover {
+        background-color: var(--dark-mode-primary); /* Fondo más oscuro al pasar el ratón */
+        color: var(--dark-mode-text); /* Color de texto claro al pasar el ratón */
+    }
+    body.dark-theme .menu-toggle span {
+      background-color: var(--dark-mode-text); /* Las barras del menú también cambian de color */
+    }
+}
+
+/* Asegúrate de añadir transiciones suaves a todas las propiedades que cambian */
+/* Puedes añadir 'transition: all 0.4s ease;' a elementos clave como header, main, .hero-section, etc. */
